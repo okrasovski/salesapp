@@ -1,0 +1,28 @@
+table align="left"
+  tr
+    th style=("background:#ccc")
+      h2 = "Clients"
+
+  tr
+    th id  
+    th
+      div.em join_at
+    th
+      div.em last_sale_at 
+      
+    th bonus sum RUR
+    
+
+  - @clients.each do |client|
+
+    tr
+      td 
+        = client.id
+      td.timestamp
+        div.em = time_with_distance client.join_at
+        /.to_s[0..15]
+      td.timestamp
+        div.em = time_with_distance client.last_sale_at   
+                
+      td.numeric = client.bonus_sum
+      

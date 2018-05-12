@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 	before_filter do
     @products = Product.ordered
     @sources = Source.ordered
-    @sales = @sales = Sale.top.first(20)
+    @sales = Sale.top.first(20)
     
   end
 

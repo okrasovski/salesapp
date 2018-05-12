@@ -11,7 +11,7 @@ table align="left"
       div.em timestamp
     th user
 
-  - @sales.each do |sale|
+  - sales.each do |sale|
 
     tr
       td 
@@ -19,7 +19,8 @@ table align="left"
                 
       td.numeric = sale.sale_sum
       td.timestamp
-        div.em = sale.timestamp.to_s[0..15]
+        div.em = time_with_distance sale.timestamp
+        /.to_s[0..15]
       td 
         = sale.user
             

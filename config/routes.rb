@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 	resources :users, only: [:index]
 	resources :sources #, only: [:index]
 	resources :sales
+	resources :clients
    
 end

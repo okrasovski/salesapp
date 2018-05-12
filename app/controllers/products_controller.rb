@@ -61,9 +61,7 @@ p
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  #{"utf8"=>"✓", "_method"=>"put", "sources"=>{"coffee"=>"20", "milk"=>"140"}, "id"=>"1"}
+  end  
 
   # DELETE /products/1
   # DELETE /products/1.json

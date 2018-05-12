@@ -23,6 +23,9 @@ html
 
          - if can? :index, :sources
            li = link_to "Sources", sources_path
+           
+         - if can? :index, :clients
+           li = link_to 'Clients', clients_path
 
          - if can? :index, :sales
            li = link_to "Sales", sales_path

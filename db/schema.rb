@@ -18,11 +18,10 @@ ActiveRecord::Schema.define(version: 20180426232957) do
 
   create_table "clients", force: :cascade do |t|
     t.datetime "join_at"
-    t.integer  "first_level_sales_sum"
-    t.integer  "second_level_sales_sum"
-    t.integer  "bonus_sum"
+    t.integer  "bonus_sum",               default: 0
     t.integer  "parent_id"
-    t.string   "phone_number",           limit: 11
+    t.string   "phone_number", limit: 11
+    t.datetime "last_sale_at"
   end
 
   create_table "products", force: :cascade do |t|
