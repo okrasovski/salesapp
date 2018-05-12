@@ -1,0 +1,61 @@
+table
+  tr
+    th style=("background:#ccc")
+      h2 = "Products"
+  tr
+    th product
+    th price RUR
+    th
+      div.em sales RUR
+    th
+      div.em sum_total RUR
+    th
+      div.em last_sale at
+    th sources | amount
+    - if can? :destroy, :products
+      th
+    
+
+  - products.each do |product|
+
+    tr
+      = form_for product, :action => :update, :method => :put do |f|
+        td
+          div style=("display:inline;padding-right:3px")
+            = product.name
+          ||
+          div.comment style=("display:inline;padding-left:2px")
+            = product.id
+          
+          = f.text_field :name
+          
+        td.numeric
+          div style=("display:inline;padding-left:2px")
+            = product.price
+          
+          = f.number_field :price, :min => "1"
+            
+        td.numeric
+          div.em = product.sales_amount
+        td.numeric
+          div.em = product.sum_total
+        td.timestamp
+          div.em = time_with_distance product.last_sale_at
+
+        td.comment style=("text-align:center")
+        
+          = f.fields_for :sources do |s|
+            - sources.each do |source|
+              /- source = @sources.find(key.to_i)                
+              div style=("display:inline;padding-left:10px;padding-right:3px")
+                = source.name
+                  /= number_field "#{source.id}", "#{product.sources[key]}", size: 10
+              = s.number_field  "#{source.name}", :value => "#{product.sources[source.name]}"
+              p   
+             
+                                  
+        td         
+          .actions = f.submit 'Save'
+
+        - if can? :destroy, :products
+          td = link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete

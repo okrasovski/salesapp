@@ -1,0 +1,13 @@
+- if can? :index, :products
+	p = render :partial => "products/form", locals: {products: @products, sources: @sources}
+
+- if can? :index, :sources
+	div style=("float:left")
+		= render :partial => "sources/form", locals: {sources: @sources}
+
+- if can? :index, :sales
+	div style=("float:right")
+		= render :partial => "sales/index", locals: {sales: @sales}
+
+/- if can? :create, :sales
+  /p = link_to 'New Sale', new_sale_path

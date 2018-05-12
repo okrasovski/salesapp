@@ -1,0 +1,21 @@
+table
+  tr
+    th style=("background:#ccc")
+      h2 = "Sources"
+  - @sources.each do |source|
+    tr
+      td
+        div style=("display:inline;padding-right:3px")
+          = source.name
+        ||
+        div.comment style=("display:inline;padding-left:2px")
+          = source.id      
+
+
+      /td class=("disabled")
+      td.numeric
+        div.em = source.reserve
+        = form_for source, :action => :update, :method => :put do |f|
+          = f.number_field :reserve, :min => "1"
+          = f.submit 'Save'
+      p

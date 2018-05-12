@@ -1,0 +1,25 @@
+table align="left"
+  tr
+    th style=("background:#ccc")
+      h2 = "Sales"
+
+  tr
+    th positions    
+
+    th sale sum RUR
+    th
+      div.em timestamp
+    th user
+
+  - @sales.each do |sale|
+
+    tr
+      td 
+        = sale.positions
+                
+      td.numeric = sale.sale_sum
+      td.timestamp
+        div.em = sale.timestamp.to_s[0..15]
+      td 
+        = sale.user
+            

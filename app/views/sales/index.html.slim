@@ -1,0 +1,10 @@
+= form_tag({controller: "sales", action: "index"}, method: "get") do
+	div style=("font-weight:bold")
+	  = label_tag 'Show last... sales'
+	p
+	= number_field_tag(:limit, @limit)
+
+	= submit_tag 'Show'
+
+p
+= render :partial => "sales/index", locals: {sales: @sales}

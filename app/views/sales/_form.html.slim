@@ -1,0 +1,34 @@
+
+- if flash[:new_qrcode]
+	div style=("float:right")
+		img src = flash[:new_qrcode]
+
+
+= form_for @sale do |f|
+
+  table.borderless
+	  = f.fields_for :positions do |p|
+
+	    - @products.each do |product|
+	    
+	      tr.field
+	        td style=("font-weight:bold")
+		        = label_tag product.name
+	        /td = check_box_tag "positions[#{product.name}]", product.name, checked = false
+
+	      
+
+	        /td = label_tag 'amount'
+	        td = p.number_field "#{product.name}",  :min => "1"
+	  tr
+		  td style=("font-weight:bold")
+			  = label_tag 'qrcode'
+		  td = f.file_field :qrcode
+
+	  tr
+
+		  td style=("font-weight:bold")
+		    = label_tag 'Generate qrcode'
+			td = check_box_tag "generate_qrcode", checked = false
+
+  .actions = f.submit 'Save'
