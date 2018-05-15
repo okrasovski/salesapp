@@ -1,0 +1,14 @@
+table
+ 
+  tr
+    th product
+    th price RUR
+    th
+      div.em sales RUR
+    th
+      div.em sum_total RUR
+    th
+      div.em last_sale at
+      
+  tr
+    = render :partial => "form", locals: {product: @product, sources: @sources, action: :create}

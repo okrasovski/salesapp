@@ -1,5 +1,5 @@
 - if can? :index, :products
-	p = render :partial => "products/form", locals: {products: @products, sources: @sources}
+	p = render :partial => "products/index", locals: {products: @products, sources: @sources}
 
 - if can? :index, :sources
 	div style=("float:left")

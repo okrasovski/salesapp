@@ -1,0 +1,27 @@
+table
+  tr style=("background:#ccc") 
+    th    
+      h2 = "Products"
+    th 
+      - if can? :index, :sources
+        = link_to "New Product", new_product_path
+
+  tr
+    th product
+    th price RUR
+    th
+      div.em sales RUR
+    th
+      div.em sum_total RUR
+    th
+      div.em last_sale at
+    th sources | amount
+    - if can? :destroy, :products
+      th
+
+  - products.each do |product|
+    tr
+      = render :partial => "products/form", locals: {product: product, sources: sources, action: :update}
+    
+      - if can? :destroy, :products
+        td = link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete

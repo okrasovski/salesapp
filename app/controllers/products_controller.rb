@@ -29,16 +29,17 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
   end
-p
+
   # POST /products
   # POST /products.json
   def create
     @product = Product.new(product_params)
 
     respond_to do |format|
+      #@product.sources = params["sources"]
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render json: @product, status: :created, location: @product }
+        format.html { redirect_to products_path, notice: "Product was successfully created" }
+        format.json { render json: @products, status: :created, location: @products }
       else
         format.html { render action: "new" }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -52,7 +53,7 @@ p
     @product = Product.find(params[:id])
      #params.permit![:sources].to_h[:sources]
     respond_to do |format|
-    	@product.sources = params["sources"]
+    	#@product.sources = params["sources"]
       if @product.update!(product_params) #.merge!({"sources" => params["sources"]}))
         format.html { redirect_to :back, notice: "Product was successfully updated." }
         format.json { head :ok }

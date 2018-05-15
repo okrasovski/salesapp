@@ -6,14 +6,14 @@ module SalesHelper
       unless amount.blank?
         @product = @products.find_by_name(name)
         @product.update_attributes(
-          {:sales_amount => product.sales_amount + amount.to_i, 
-            :sum_total => product.sum_total + product.price*amount.to_i,
+          {:sales_amount => @product.sales_amount + amount.to_i, 
+            :sum_total => @product.sum_total + @product.price*amount.to_i,
             :last_sale_at => Time.now})   
         
         @product.sources.each_pair do |source_name, source_amount| 
           @source = @sources.find_by_name(source_name) #source itself
           @source.update_attributes(
-            {:reserve =>  source.reserve - source_amount.to_i*amount.to_i}
+            {:reserve =>  @source.reserve - @source_amount.to_i*amount.to_i}
           )
         end             
       end
